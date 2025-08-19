@@ -1,0 +1,16 @@
+# Node / Vite / Express
+node_modules/
+dist/
+build/
+.vite/
+.env
+.env.*
+# Logs & coverage
+npm-debug.log*
+yarn*.log
+pnpm-debug.log*
+coverage/
+# Editors/OS
+.vscode/
+.idea/
+.DS_Store
