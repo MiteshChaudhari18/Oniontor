@@ -13,13 +13,12 @@ export default defineConfig({
     alias: {
       // CORRECTED: '@' now points directly to the 'src' sibling folder
       "@": path.resolve(__dirname, "src"), 
-      // CORRECTED: Must look up one directory (..) to find the 'shared' folder (if it exists)
+      // CORRECTED: Must look up one directory (..) to find external folders
       "@shared": path.resolve(__dirname, "..", "shared"),
-      // CORRECTED: Must look up one directory (..) to find the 'attached_assets' folder (if it exists)
       "@assets": path.resolve(__dirname, "..", "attached_assets"),
     },
   },
-  // CORRECTED: The project root is simply the current directory
+  // CORRECTED: The project root is simply the directory where this file sits
   root: __dirname, 
   build: {
     // CORRECTED: Output must go up one directory (..) to place 'dist/public'
