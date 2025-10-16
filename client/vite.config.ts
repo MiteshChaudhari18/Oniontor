@@ -11,17 +11,18 @@ export default defineConfig({
   base: "/", 
   resolve: {
     alias: {
-      // Corrected: '@' points directly to the 'src' sibling folder
+      // CORRECTED: '@' now points directly to the 'src' sibling folder
       "@": path.resolve(__dirname, "src"), 
-      // Corrected: Must look up one directory (..) to find the 'shared' folder
+      // CORRECTED: Must look up one directory (..) to find the 'shared' folder (if it exists)
       "@shared": path.resolve(__dirname, "..", "shared"),
-      // Corrected: Must look up one directory (..) to find the 'attached_assets' folder
+      // CORRECTED: Must look up one directory (..) to find the 'attached_assets' folder (if it exists)
       "@assets": path.resolve(__dirname, "..", "attached_assets"),
     },
   },
+  // CORRECTED: The project root is simply the current directory
   root: __dirname, 
   build: {
-    // Corrected: Output must go up one directory (..) to place 'dist/public'
+    // CORRECTED: Output must go up one directory (..) to place 'dist/public'
     outDir: path.resolve(__dirname, "..", "dist/public"), 
     emptyOutDir: true,
   },
