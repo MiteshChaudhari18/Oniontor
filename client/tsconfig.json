@@ -16,7 +16,9 @@
     "baseUrl": ".",
     "types": ["node", "vite/client"],
     "paths": {
+      // CORRECTED: @ is now relative to client/src
       "@/*": ["./src/*"],
+      // CORRECTED: @shared is now one directory up from client (../shared)
       "@shared/*": ["../shared/*"]
     }
   }
