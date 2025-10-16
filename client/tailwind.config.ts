@@ -3,7 +3,7 @@ import type { Config } from "tailwindcss";
 export default {
   darkMode: ["class"],
   // CORRECTED: Paths are now relative to the current directory (client)
-  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
+ content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       borderRadius: {
