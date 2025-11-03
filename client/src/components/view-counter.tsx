@@ -9,83 +9,70 @@ export function ViewCounter() {
   useEffect(() => {
     // Use a free API service for counting views
     const API_URL = "https://api.countapi.xyz";
-    // Using a new unique namespace to start fresh from 1
+    // Using a unique namespace for this project
     const NAMESPACE = "oniontor-project-v2";
     const KEY = "total-views";
 
     const fetchViews = async () => {
       try {
-        // First, check if this user has already been counted in this session
-        const hasBeenCounted = sessionStorage.getItem("viewCounted");
+        // Always fetch the current global count from the API first
+        const getResponse = await fetch(`${API_URL}/get/${NAMESPACE}/${KEY}`);
+        const getData = await getResponse.json();
+        let currentCount = getData.value || 0;
+        
+        // Display the current global count immediately
+        setViews(currentCount);
+        setIsLoading(false);
 
-        // If user hasn't been counted yet, increment the counter first
-        if (!hasBeenCounted) {
+        // Check if this browser has already been counted
+        // Using a combination of browser fingerprinting for better tracking
+        const browserId = localStorage.getItem("browserViewId");
+        const hasCountedToday = localStorage.getItem("countedDate") === new Date().toDateString();
+        
+        // Only increment if this browser hasn't been counted today
+        if (!hasCountedToday) {
           try {
-            // Increment the counter (this will create it if it doesn't exist, starting from 1)
+            // Increment the global counter
             const incrementResponse = await fetch(
               `${API_URL}/hit/${NAMESPACE}/${KEY}`,
               { method: "GET" }
             );
             const incrementData = await incrementResponse.json();
             
-            // The API returns the new value after incrementing
-            const newViewCount = incrementData.value || 1;
+            // Update with the new global count
+            const newViewCount = incrementData.value || currentCount + 1;
             setViews(newViewCount);
-            sessionStorage.setItem("viewCounted", "true");
             
-            // Also update localStorage as backup
-            localStorage.setItem("viewCount", newViewCount.toString());
+            // Mark this browser as counted for today
+            if (!browserId) {
+              localStorage.setItem("browserViewId", `${Date.now()}-${Math.random()}`);
+            }
+            localStorage.setItem("countedDate", new Date().toDateString());
+            localStorage.setItem("lastViewCount", newViewCount.toString());
           } catch (error) {
             console.error("Failed to increment views:", error);
-            // Fallback: use localStorage
-            const localViews = parseInt(
-              localStorage.getItem("viewCount") || "0",
-              10
-            );
-            const newViews = localViews + 1;
-            localStorage.setItem("viewCount", newViews.toString());
-            setViews(newViews);
-            sessionStorage.setItem("viewCounted", "true");
-          }
-        } else {
-          // User already counted, just fetch the current count
-          try {
-            const response = await fetch(`${API_URL}/get/${NAMESPACE}/${KEY}`);
-            const data = await response.json();
-            const currentViews = data.value || parseInt(
-              localStorage.getItem("viewCount") || "1",
-              10
-            );
-            setViews(currentViews);
-          } catch (error) {
-            // Fallback to localStorage
-            const localViews = parseInt(
-              localStorage.getItem("viewCount") || "1",
-              10
-            );
-            setViews(localViews);
+            // If increment fails, keep showing the current count
           }
         }
-
-        setIsLoading(false);
       } catch (error) {
         console.error("Failed to fetch views:", error);
-        // Final fallback: use localStorage
+        // Fallback: use localStorage
         const localViews = parseInt(
-          localStorage.getItem("viewCount") || "0",
+          localStorage.getItem("lastViewCount") || "1",
           10
         );
-        const hasBeenCounted = sessionStorage.getItem("viewCounted");
-
-        if (!hasBeenCounted) {
-          const newViews = localViews + 1;
-          localStorage.setItem("viewCount", newViews.toString());
-          setViews(newViews);
-          sessionStorage.setItem("viewCounted", "true");
-        } else {
-          setViews(localViews || 1);
-        }
+        setViews(localViews);
         setIsLoading(false);
+        
+        // Still try to increment if this browser hasn't been counted today
+        const hasCountedToday = localStorage.getItem("countedDate") === new Date().toDateString();
+        if (!hasCountedToday) {
+          const newViews = localViews + 1;
+          localStorage.setItem("lastViewCount", newViews.toString());
+          localStorage.setItem("browserViewId", `${Date.now()}-${Math.random()}`);
+          localStorage.setItem("countedDate", new Date().toDateString());
+          setViews(newViews);
+        }
       }
     };
 

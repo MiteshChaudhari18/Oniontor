@@ -23,7 +23,7 @@ export interface Project {
 export const projectData: Project = {
   title: "De-anonymizing-Entities-on-Onion-Sites-Operating-on-the-TOR-Network",
   description: "The internet comprises various layers, with the dark web being a segment not indexed by standard search engines. Accessing the dark web typically requires specialized software, with the TOR (The Onion Router) network being the most prevalent. TOR facilitates anonymous communication by routing user traffic through multiple servers (nodes), each adding a layer of encryption, akin to the layers of an onion. While TOR serves as a vital tool for preserving privacy and circumventing censorship, it also provides a haven for illicit activities due to its anonymity features. This duality presents challenges in distinguishing between legitimate use and malicious activities.",
-  liveUrl: "https://de-anonymizing-entities-on-onion-sites.onrender.com/",
+  liveUrl: "https://de-anonymizing.onrender.com/",
   githubUrl: "https://github.com/MiteshChaudhari18/De-anonymizing-Entities-on-Onion-Sites-Operating-on-the-TOR-Network.git",
   techStack: ["React.js", "Node.js", "Html ","CSS","MongoDB", "Tailwind CSS", "Bootstrap" , "Chart.js", "Scapy","PYTHON","Pyshark","Socket.IO","Flask","Stem", "httpx","GeoIP","Mapbox"],
   features: [
@@ -33,8 +33,9 @@ export const projectData: Project = {
       description: "Real-time analytics on the TOR network continuously monitors onion site traffic and user behavior to detect suspicious patterns instantly. It helps identify malicious entities by analyzing connection timings, traffic anomalies, and service activity as they happen, enabling quicker responses and better threat detection.",
       color: "blue"
     },
+    
     {
-      
+    
       title: "Sustainability Goals",
       description: "The sustainability goal of TorCrawler is to stay adaptable, maintainable, and reusable for long-term dark web investigations.Its modular design allows easy updates to individual components without disrupting the whole system.Support for data export and integration ensures continued relevance in research, cybersecurity, and law enforcement.",
       color: "green"
