@@ -9,7 +9,8 @@ export function ViewCounter() {
   useEffect(() => {
     // Use a free API service for counting views
     const API_URL = "https://api.countapi.xyz";
-    const NAMESPACE = "oniontor-project";
+    // Using a new unique namespace to start fresh from 1
+    const NAMESPACE = "oniontor-project-v2";
     const KEY = "total-views";
 
     const fetchViews = async () => {
@@ -17,48 +18,72 @@ export function ViewCounter() {
         // First, check if this user has already been counted in this session
         const hasBeenCounted = sessionStorage.getItem("viewCounted");
 
-        // Fetch current view count
-        const response = await fetch(`${API_URL}/get/${NAMESPACE}/${KEY}`);
-        const data = await response.json();
-        const currentViews = data.value || 0;
-
-        setViews(currentViews);
-
-        // If user hasn't been counted yet, increment the counter
+        // If user hasn't been counted yet, increment the counter first
         if (!hasBeenCounted) {
           try {
+            // Increment the counter (this will create it if it doesn't exist, starting from 1)
             const incrementResponse = await fetch(
               `${API_URL}/hit/${NAMESPACE}/${KEY}`,
               { method: "GET" }
             );
             const incrementData = await incrementResponse.json();
-            setViews(incrementData.value || currentViews + 1);
+            
+            // The API returns the new value after incrementing
+            const newViewCount = incrementData.value || 1;
+            setViews(newViewCount);
             sessionStorage.setItem("viewCounted", "true");
+            
+            // Also update localStorage as backup
+            localStorage.setItem("viewCount", newViewCount.toString());
           } catch (error) {
             console.error("Failed to increment views:", error);
-            // Fallback: increment locally
-            setViews(currentViews + 1);
+            // Fallback: use localStorage
+            const localViews = parseInt(
+              localStorage.getItem("viewCount") || "0",
+              10
+            );
+            const newViews = localViews + 1;
+            localStorage.setItem("viewCount", newViews.toString());
+            setViews(newViews);
             sessionStorage.setItem("viewCounted", "true");
+          }
+        } else {
+          // User already counted, just fetch the current count
+          try {
+            const response = await fetch(`${API_URL}/get/${NAMESPACE}/${KEY}`);
+            const data = await response.json();
+            const currentViews = data.value || parseInt(
+              localStorage.getItem("viewCount") || "1",
+              10
+            );
+            setViews(currentViews);
+          } catch (error) {
+            // Fallback to localStorage
+            const localViews = parseInt(
+              localStorage.getItem("viewCount") || "1",
+              10
+            );
+            setViews(localViews);
           }
         }
 
         setIsLoading(false);
       } catch (error) {
         console.error("Failed to fetch views:", error);
-        // Fallback: use localStorage as backup
+        // Final fallback: use localStorage
         const localViews = parseInt(
-          localStorage.getItem("localViews") || "1116",
+          localStorage.getItem("viewCount") || "0",
           10
         );
         const hasBeenCounted = sessionStorage.getItem("viewCounted");
 
         if (!hasBeenCounted) {
           const newViews = localViews + 1;
-          localStorage.setItem("localViews", newViews.toString());
+          localStorage.setItem("viewCount", newViews.toString());
           setViews(newViews);
           sessionStorage.setItem("viewCounted", "true");
         } else {
-          setViews(localViews);
+          setViews(localViews || 1);
         }
         setIsLoading(false);
       }
