@@ -8,28 +8,20 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   plugins: [react()],
-  base: "/", 
+  base: "/",
   resolve: {
     alias: {
-      // CORRECTED: '@' now points directly to the 'src' sibling folder
-      "@": path.resolve(__dirname, "src"), 
-      // CORRECTED: Must look up one directory (..) to find external folders
-      "@shared": path.resolve(__dirname, "..", "shared"),
-      "@assets": path.resolve(__dirname, "..", "attached_assets"),
+      "@": path.resolve(__dirname, "src"),
     },
   },
-  // CORRECTED: The project root is simply the directory where this file sits
-  root: __dirname, 
+  root: __dirname,
   build: {
-    // CORRECTED: Output must go up one directory (..) to place 'dist/public'
-    outDir: path.resolve(__dirname, "..", "dist/public"), 
+    outDir: "dist",
     emptyOutDir: true,
+    sourcemap: false,
   },
   server: {
     port: 5173,
-    fs: {
-      strict: true,
-      deny: ["**/.*"],
-    },
+    host: true,
   },
 });

@@ -1,15 +1,14 @@
 {
-  "name": "rest-express",
+  "name": "project-showcase",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "license": "MIT",
-  "homepage": "https://MiteshChaudhari18.github.io/FrontView/",
   "scripts": {
     "dev": "vite",
-    "build": "npx vite build",
+    "build": "vite build",
     "preview": "vite preview",
-    "deploy": "gh-pages -d dist"
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

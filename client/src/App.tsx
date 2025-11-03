@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { ViewCounter } from "@/components/view-counter";
 import Home from "@/pages/home";
 import NotFound from "@/pages/not-found";
 
@@ -57,6 +58,7 @@ function App() {
             <div className="relative z-10">
               <Toaster />
               <ThemeToggle />
+              <ViewCounter />
               <Router />
             </div>
           </div>
