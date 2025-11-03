@@ -12,18 +12,7 @@ export function HeroSection() {
   return (
     <section
       className="relative min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden"
-      style={{
-        backgroundImage: "url('/df3029f0-b697-4dea-8fd2-a28e240bc1fc.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
     >
-      {/* Overlay with a slight dark tint to improve text readability */}
-      <div
-        className="absolute inset-0 bg-black bg-opacity-60 -z-10"
-        aria-hidden="true"
-      />
 
       <motion.h1
         className="text-7xl mb-16 font-bold w-full max-w-full mx-auto text-center bg-gradient-to-r from-green-200 via-yellow-300 to-green-200 bg-clip-text text-transparent"
