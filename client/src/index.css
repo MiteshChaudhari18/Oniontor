@@ -54,46 +54,46 @@
 
 /* Dark theme overrides */
 .dark {
-  --background: hsl(222 84% 5%);
+  --background: hsl(0 0% 0%);
   --foreground: hsl(210 40% 95%);
-  --card: hsl(222 84% 8%);
+  --card: hsl(0 0% 5%);
   --card-foreground: hsl(210 40% 95%);
-  --popover: hsl(222 84% 5%);
+  --popover: hsl(0 0% 0%);
   --popover-foreground: hsl(210 40% 95%);
   --primary: hsl(262 90% 60%);
   --primary-foreground: hsl(0 0% 100%);
-  --secondary: hsl(217 32% 17%);
+  --secondary: hsl(0 0% 12%);
   --secondary-foreground: hsl(210 40% 95%);
-  --muted: hsl(217 32% 17%);
+  --muted: hsl(0 0% 12%);
   --muted-foreground: hsl(215 20% 65%);
-  --accent: hsl(217 32% 17%);
+  --accent: hsl(0 0% 12%);
   --accent-foreground: hsl(262 90% 60%);
   --destructive: hsl(0 62% 30%);
   --destructive-foreground: hsl(0 85% 60%);
-  --border: hsl(217 32% 17%);
-  --input: hsl(217 32% 17%);
+  --border: hsl(0 0% 12%);
+  --input: hsl(0 0% 12%);
   --ring: hsl(262 90% 60%);
   --chart-1: hsl(262 90% 60%);
   --chart-2: hsl(173 58% 39%);
   --chart-3: hsl(43 96% 56%);
   --chart-4: hsl(158 64% 52%);
   --chart-5: hsl(340 75% 55%);
-  --sidebar: hsl(222 84% 8%);
+  --sidebar: hsl(0 0% 5%);
   --sidebar-foreground: hsl(210 40% 95%);
   --sidebar-primary: hsl(262 90% 60%);
   --sidebar-primary-foreground: hsl(0 0% 100%);
-  --sidebar-accent: hsl(217 32% 17%);
+  --sidebar-accent: hsl(0 0% 12%);
   --sidebar-accent-foreground: hsl(262 90% 60%);
-  --sidebar-border: hsl(217 32% 17%);
+  --sidebar-border: hsl(0 0% 12%);
   --sidebar-ring: hsl(262 90% 60%);
-  --glass-bg: hsla(222 84% 5% / 0.1);
+  --glass-bg: hsla(0 0% 0% / 0.1);
   --glass-border: hsla(210 40% 95% / 0.1);
-  --glass-shadow: 0 8px 32px hsla(222 84% 5% / 0.5);
+  --glass-shadow: 0 8px 32px hsla(0 0% 0% / 0.5);
   --gradient-hero: linear-gradient(135deg, hsl(262 90% 45%) 0%, hsl(297 64% 52%) 35%, hsl(340 75% 55%) 70%, hsl(45 95% 50%) 100%);
-  --gradient-card: linear-gradient(145deg, hsla(222 84% 8% / 0.95), hsla(222 84% 5% / 0.75));
+  --gradient-card: linear-gradient(145deg, hsla(0 0% 5% / 0.95), hsla(0 0% 0% / 0.75));
   --gradient-mesh: radial-gradient(circle at 20% 80%, hsla(262 90% 45% / 0.2) 0%, transparent 50%), radial-gradient(circle at 80% 20%, hsla(340 75% 55% / 0.2) 0%, transparent 50%), radial-gradient(circle at 40% 40%, hsla(297 64% 52% / 0.15) 0%, transparent 50%);
   --shadow-glass: 0 8px 32px 0 hsla(262 90% 45% / 0.25);
-  --shadow-neumorphism: 20px 20px 60px hsl(217 32% 12%), -20px -20px 60px hsl(222 84% 10%);
+  --shadow-neumorphism: 20px 20px 60px hsl(0 0% 8%), -20px -20px 60px hsl(0 0% 5%);
   --shadow-elevated: 0 25px 50px -12px hsla(262 90% 45% / 0.4);
 }
 
